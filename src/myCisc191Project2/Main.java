@@ -1,6 +1,5 @@
 package myCisc191Project2;
 
-
 /**
  * Lead Author(s):
  * 
@@ -20,7 +19,7 @@ package myCisc191Project2;
  * 
  *         <<add more references here>>
  * 
- *         Version/date: 03/04/2023
+ *         Version/date: 05/04/2023
  * 
  *         Responsibilities of class: main class
  * 
@@ -129,8 +128,7 @@ public class Main
 									+ "4.Renew Card\n " + "5.Print Statement\n "
 									+ "6.Make Purchase\n " + "7.Redeem Bonus\n "
 									+ "8.Make Payment\n " + "9.Delete Account\n"
-									+ "10.Wire Transfer\n" + "11.Quit\n"
-									+ "12.Search Account Information by Entering Name");
+									+ "10.Wire Transfer\n" + "11.Quit");
 					int option = Integer.parseInt(scan.nextLine());
 					try
 					{
@@ -443,11 +441,13 @@ public class Main
 
 			if(A11.equalsIgnoreCase("y"))
 			{
+				//create window if y is inserted
 				SurveyWindow window = new SurveyWindow();
 				
 			}
 			else
 			{
+				//display last message to customer
 				System.out.println("Thank you for coming in, goodbye!");
 			}
 			
