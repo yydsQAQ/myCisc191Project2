@@ -44,7 +44,7 @@ public class Bank
 	private Card[] cards; // a bank has-many cards
 	private int accountCounter = 0;
 	private int cardCounter = 0;
-	private SearchAccount searchAccount;
+	private SearchAccount searchAccount;//a bank has-a searchAccount
 
 	// Bank constructor
 	public Bank()

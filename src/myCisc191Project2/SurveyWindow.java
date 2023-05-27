@@ -34,7 +34,7 @@ import javax.swing.JRadioButton;
  * 
  */
 
-//outer class
+
 public class SurveyWindow extends JFrame // SurveyWindow is-a JFrame
 {
 	private final int WINDOW_WIDTH = 900; //window width in pixels

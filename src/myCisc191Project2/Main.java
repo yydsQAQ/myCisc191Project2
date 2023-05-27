@@ -49,8 +49,8 @@ public class Main
 					+ " (y = yes | "
 					+ "Press any key to enter our exisiting bank)");
 			// /Users/shuyiyu/Desktop/input.txt
-			String A0 = scan.nextLine();
-			if (A0.equalsIgnoreCase("y"))
+			String textAnswer = scan.nextLine();
+			if (textAnswer.equalsIgnoreCase("y"))
 			{
 				// /Users/shuyiyu/Desktop/input.txt
 				System.out.println("Please enter the file name");
@@ -62,20 +62,20 @@ public class Main
 				System.out.println(
 						"Welcome to our Bank, are you a new customer or an existing customer? (New/Existing) n/e \n"
 								+ "Press any key to choose whether you want to leave the Bank");
-				String A1 = scan.nextLine();
-				if (A1.equalsIgnoreCase("n"))
+				String leaveBankAnswer = scan.nextLine();
+				if (leaveBankAnswer.equalsIgnoreCase("n"))
 				{
 					System.out.println("For new customer, do you wish to open a new account? (yes/no) y/n");
-					String A2 = scan.nextLine();
-					if (A2.equalsIgnoreCase("n"))
+					String createAccountAnswer = scan.nextLine();
+					if (createAccountAnswer.equalsIgnoreCase("n"))
 					{
 						System.out.println("Thank you for coming in, have a good day!");
 					}
-					else if (A2.equalsIgnoreCase("y"))
+					else if (createAccountAnswer.equalsIgnoreCase("y"))
 					{
 						System.out.println("Choose which type of account you wish to open (Checking and Savings or Rewards) (s&c / r)");
-						String A3 = scan.nextLine();
-						if (A3.equalsIgnoreCase("s&c"))
+						String accountType = scan.nextLine();
+						if (accountType.equalsIgnoreCase("s&c"))
 						{
 							var newCustomer = Utilities.getCustomerInfo(scan);
 							CheckingAccount checking = new CheckingAccount(newCustomer, 0);
@@ -84,15 +84,15 @@ public class Main
 											+ checking.getAccountNumber() + " Saving account number: " + saving.getAccountNumber());
 							DebitCard debitCard = new DebitCard(newCustomer.getName(), checking.getAccountNumber(),saving.getAccountNumber(), null);
 							System.out.println("Please enter a four digit pin to create a debit card");
-							String A4 = scan.nextLine();
-							debitCard.setPin(A4, scan);
+							String debitPin = scan.nextLine();
+							debitCard.setPin(debitPin, scan);
 							System.out.println("Debit card was successfully created!\n"+ "Please record your debit card information below because you would use it to access to your checking and saving account in the future.");
 							System.out.println(debitCard);
 							bank.addAccount(checking);
 							bank.addAccount(saving);
 							bank.addCard(debitCard);
 						}
-						else if (A3.equalsIgnoreCase("r"))
+						else if (accountType.equalsIgnoreCase("r"))
 						{
 							var newCustomer = Utilities.getCustomerInfo(scan);
 
@@ -118,7 +118,7 @@ public class Main
 						throw new IllegalArgumentException("Please choose a valid option!");
 					}
 				}
-				if (A1.equalsIgnoreCase("e"))
+				if (leaveBankAnswer.equalsIgnoreCase("e"))
 				{
 
 					System.out
@@ -136,15 +136,15 @@ public class Main
 						{
 							case 1:
 								System.out.println("Would you like to deposit to Checking account or Savings account? (s/c)");
-								String A5 = scan.nextLine();
-								if (A5.equalsIgnoreCase("c"))
+								String case1Input = scan.nextLine();
+								if (case1Input.equalsIgnoreCase("c"))
 								{
 									CheckingAccount checking = Utilities.getChecking(bank, scan);
 									System.out.println("Please enter the deposit amount");
 									int amount = Integer.parseInt(scan.nextLine());
 									checking.deposit(amount, scan);
 								}
-								else if (A5.equalsIgnoreCase("s"))
+								else if (case1Input.equalsIgnoreCase("s"))
 								{
 									SavingAccount saving = Utilities.getSaving(bank, scan);
 									System.out.println("Please enter the deposit amount");
@@ -158,15 +158,15 @@ public class Main
 								break;
 							case 2:
 								System.out.println("Would you like to withdraw Checking account or Savings account? (s/c)");
-								String A6 = scan.nextLine();
-								if (A6.equalsIgnoreCase("c"))
+								String case2Input = scan.nextLine();
+								if (case2Input.equalsIgnoreCase("c"))
 								{
 									CheckingAccount checking = Utilities.getChecking(bank, scan);
 									System.out.println("Please enter the withdraw amount");
 									int amount = Integer.parseInt(scan.nextLine());
 									checking.withdraw(amount, scan);
 								}
-								else if (A6.equalsIgnoreCase("s"))
+								else if (case2Input.equalsIgnoreCase("s"))
 								{
 									SavingAccount saving = Utilities.getSaving(bank, scan);
 									System.out.println("Please enter the withdraw amount");
@@ -180,18 +180,18 @@ public class Main
 								break;
 							case 3:
 								System.out.println("Would you like to get Checking account, Savings account, or Rewards account information? Enter(s/c/r)");
-								String A7 = scan.nextLine();
-								if (A7.equalsIgnoreCase("c"))
+								String case3Input = scan.nextLine();
+								if (case3Input.equalsIgnoreCase("c"))
 								{
 									CheckingAccount checking = Utilities.getChecking(bank, scan);
 									System.out.println(checking);
 								}
-								else if (A7.equalsIgnoreCase("s"))
+								else if (case3Input.equalsIgnoreCase("s"))
 								{
 									SavingAccount saving = Utilities.getSaving(bank, scan);
 									System.out.println(saving);
 								}
-								else if (A7.equalsIgnoreCase("r"))
+								else if (case3Input.equalsIgnoreCase("r"))
 								{
 									RewardsAccount rewards = Utilities.getRewards(bank, scan);
 									System.out.println(rewards);
@@ -204,8 +204,8 @@ public class Main
 							case 4:
 								// renew card
 								System.out.println("Would you like to renew the credit card or debit card? (c/d)");
-								String A8 = scan.nextLine();
-								if (A8.equalsIgnoreCase("c"))
+								String case4Input = scan.nextLine();
+								if (case4Input.equalsIgnoreCase("c"))
 								{
 									System.out.println("Please provide your credit card number");
 									int position = bank.findCard(scan.nextLine());
@@ -220,7 +220,7 @@ public class Main
 										throw new InputMismatchException("Please try again");
 									}
 								}
-								else if (A8.equalsIgnoreCase("d"))
+								else if (case4Input.equalsIgnoreCase("d"))
 								{
 									System.out.println("Please provide your debit card number");
 									int position = bank.findCard(scan.nextLine());
@@ -242,11 +242,11 @@ public class Main
 								break;
 							case 5:
 								System.out.println("Which account would you like to print statement? (s/c/r)");
-								String A10 = scan.nextLine();
+								String case5Input = scan.nextLine();
 								System.out.println("Please name the output file.");
 								String path = scan.nextLine();
 								BufferedWriter writer = new BufferedWriter(new FileWriter(path));
-								if (A10.equalsIgnoreCase("s"))
+								if (case5Input.equalsIgnoreCase("s"))
 								{
 									SavingAccount saving = Utilities.getSaving(bank, scan);
 									writer.write(LocalDate.now()
@@ -280,7 +280,7 @@ public class Main
 											+ saving.getBalance() + "\n");
 
 								}
-								else if (A10.equalsIgnoreCase("c"))
+								else if (case5Input.equalsIgnoreCase("c"))
 								{
 									CheckingAccount checking = Utilities.getChecking(bank, scan);
 									writer.write(LocalDate.now()
@@ -315,7 +315,7 @@ public class Main
 											+ checking.getBalance() + "\n");
 
 								}
-								else if (A10.equalsIgnoreCase("r"))
+								else if (case5Input.equalsIgnoreCase("r"))
 								{
 									RewardsAccount rewards = Utilities.getRewards(bank, scan);
 									writer.write("Current Date: "
@@ -393,8 +393,8 @@ public class Main
 								int position = bank.findAccount(scan.nextLine());
 								Account recipient = bank.getAccount(position);
 								System.out.println("Would you like to withdraw Checking account or Savings account? (s/c)");
-								String A9 = scan.nextLine();
-								if (A9.equalsIgnoreCase("c"))
+								String case10Input = scan.nextLine();
+								if (case10Input.equalsIgnoreCase("c"))
 								{
 									CheckingAccount checking = Utilities.getChecking(bank, scan);
 									System.out.println("Please enter the transfer amount");
@@ -402,7 +402,7 @@ public class Main
 									checking.withdraw(amount1, scan);
 									recipient.deposit(amount1, scan);
 								}
-								else if (A9.equalsIgnoreCase("s"))
+								else if (case10Input.equalsIgnoreCase("s"))
 								{
 									SavingAccount saving = Utilities.getSaving(bank, scan);
 									System.out.println("Please enter the transfer amount");
